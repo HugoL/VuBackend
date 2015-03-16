@@ -63,11 +63,11 @@
 	<?php echo $form->hiddenField($data,'id'); ?>
 	<div class="row col-md-10 col-lg-10">
 		<?php if( Yii::app()->user->rol == 4 ): ?>
-			<?php echo $form->textArea($data,'observaciones2',array('class'=>'form-control')); ?>
-			<?php echo $form->error($data,'observaciones2'); ?>
-		<?php else: ?>
 			<?php echo $form->textArea($data,'observaciones',array('class'=>'form-control')); ?>
 			<?php echo $form->error($data,'observaciones'); ?>
+		<?php else: ?>
+			<?php echo $form->textArea($data,'observaciones2',array('class'=>'form-control')); ?>
+			<?php echo $form->error($data,'observaciones2'); ?>
 		<?php endif; ?>
 	</div>
 	<div class="row col-md-2 col-lg-2 guardar">

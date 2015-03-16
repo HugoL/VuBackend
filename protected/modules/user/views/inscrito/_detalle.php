@@ -83,14 +83,17 @@
 	<td><?php echo CHtml::encode($data->getAttributeLabel('titulacion')); ?>:</b></td>
 	<td><?php echo CHtml::encode($data->titulacion); ?></td>
 	</tr>
+	<?php if( Yii::app()->user->rol == 4 ): ?>
 <tr><td>
 	<?php echo CHtml::encode($data->getAttributeLabel('observaciones')); ?>:</b></td>
 	<td><?php echo CHtml::encode($data->observaciones); ?></td>
 	</tr>
-<tr><td>
+<?php else: ?>
+	<tr><td>
 	<?php echo CHtml::encode($data->getAttributeLabel('observaciones2')); ?>:</b></td>
 	<td><?php echo CHtml::encode($data->observaciones2); ?></td>
 	</tr>
+<?php endif; ?>
 <tr><td>
 	<?php echo CHtml::encode($data->getAttributeLabel('fecha')); ?>:</b></td>
 	<td><?php echo CHtml::encode($data->fecha); ?></td>

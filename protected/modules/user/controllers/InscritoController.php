@@ -49,7 +49,7 @@ class InscritoController extends Controller
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView($id){
-		$inscritoComunicacion = new inscritoComunicacion;
+		$inscritoComunicacion = new InscritoComunicacion;
 		$comunicaciones = Comunicacion::model()->findAll();
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),

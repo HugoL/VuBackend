@@ -31,7 +31,14 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <?php 
+    $script = "
+    $('#menubtn').click(function(){
+             var aTag = $(\"a[name='menu']\");
+            $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+    }); ";
+   
+    Yii::app()->clientScript->registerScript('arriba', $script); ?>
 </head>
 
 <body>
@@ -39,7 +46,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse" id="menubtn">
                     <span class="sr-only">Ver Menú</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>

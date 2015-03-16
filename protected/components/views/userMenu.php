@@ -1,4 +1,4 @@
-<nav id="menulateral">
+<nav id="menulateral"><a name="menu"></a>
 <div class="collapse navbar-collapse navbar-ex1-collapse">
 <ul class="navbar navbar-inverse  nav navbar-nav side-nav" id="menulateral">
 	<li <?php if( strcmp(Yii::app()->controller->id,'profile') == 0 ): ?> class="active" <?php endif; ?>><?php echo CHtml::link('<i class="fa fa-fw fa-home"></i> Principal',array('profile/principal')); ?></li>
