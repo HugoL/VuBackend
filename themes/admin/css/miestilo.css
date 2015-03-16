@@ -1,0 +1,175 @@
+.precio{
+
+padding: 1px 4px 2px;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+
+color: #fff;
+font-weight: bold;
+line-height: 14px;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+white-space: nowrap;
+vertical-align: baseline;
+background-color: #999;
+
+font-size: 150%;
+line-height: 150%;
+position: absolute;
+z-index: 10;
+margin-left: -15px;
+margin-top: -10px;
+width: 115px;
+text-align: center;
+padding-left: 5px;
+-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+-webkit-transform: rotate(350deg);
+-moz-transform: rotate(350deg);
+-o-transform: rotate(350deg);
+-ms-transform: rotate(350deg);
+
+}
+
+.precios{
+	background-color: rgb(83, 83, 83);
+	padding: 4px 4px 4px;
+	width: 150px;
+}
+
+.txttotal{
+	color: #464646;
+font-weight: bold;
+line-height: 14px;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+white-space: nowrap;
+vertical-align: baseline;
+
+	font-size: 110%;
+line-height: 150%;
+position: absolute;
+z-index: 10;
+margin-left: -15px;
+margin-top: -10px;
+width: 115px;
+text-align: center;
+padding-left: 5px;
+
+}
+.req{
+	font-weight: bold;
+	font-style: normal;
+	color: #d10000;
+	font-size: 1.2em;
+	line-height: .85em;
+}
+.logofeuz img{
+	display: inline-block;
+ 	height: auto;
+ 	max-width: 100%;
+	position: relative;
+	top: 0px;
+	float: right;
+	padding-bottom: 10px;
+	clear:both;
+}
+.logousatic img{
+	display: inline-block;
+ 	height: auto;
+ 	max-width: 100%;
+	position: relative;
+	top: 0px;
+	float: left;
+	padding-bottom: 10px;
+	clear:both;
+}
+.cabecera{
+	font-size: 2.1em;
+	vertical-align: middle;
+	font-family: 'Ubuntu', sans-serif;
+	clear: both;
+	min-height: 100px;
+	border-bottom:2px solid #ccc;
+	margin-bottom: 10px;
+}
+.cabecera .texto{
+	padding-top: 18px;
+}
+.usatic{
+	font-weight: bold;
+	font-family: arial, sans-serif;
+	/*letter-spacing: 0.0625em;*/
+}
+.milabel{
+	vertical-align: middle;
+	padding-left: 2px !important;
+}
+#condiciones{
+	display: inline-block;
+}
+h5{
+	font-weight: bold !important;
+}
+
+table {
+	margin-bottom: 2px !important;
+}
+
+input#installer3 {
+	margin-left: 10px !important;
+}
+
+.pagado{
+	padding: 15px;
+}
+#terminosycondiciones{
+	color:#737373;
+}
+
+#result {	
+	
+}
+.show{
+	padding: 1px 2px 2px;
+	margin-bottom: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #E6E6E6;
+}
+#w2b-StoTop {
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px; 
+	width:40px;background-color: #EEEEEE;
+	background-color: rgba(238, 238, 238, 0.6);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#99EEEEEE',EndColorStr='#99EEEEEE');
+	text-align:center;
+	padding:5px;
+	position:fixed;
+	bottom:10px;
+	right:10px;
+	cursor:pointer;
+	color:#444;
+	text-decoration:none;
+	border:1px solid #C9C9C9;
+}
+#w2b-StoDown {
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px; 
+	width:40px;
+	background-color: #EEEEEE;
+	background-color: rgba(238, 238, 238, 0.6);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#99EEEEEE',EndColorStr='#99EEEEEE');
+	text-align:center;
+	padding:5px;
+	position:fixed;
+	bottom:10px;
+	right:10px;
+	cursor:pointer;
+	color:#444;
+	text-decoration:none;
+	border:1px solid #C9C9C9;
+}
