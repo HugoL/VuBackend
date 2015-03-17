@@ -15,7 +15,13 @@ $this->menu=array(
 	array('label'=>'Manage Comunicacion', 'url'=>array('admin')),
 );
 ?>
-<center><?php echo CHtml::link('<i class="fa fa-arrow-left"></i> Volver',CHttpRequest::getUrlReferrer(),array('class' => 'btn btn-danger')); ?></center>
+<?php 
+if( !empty($_GET['Comunicacion_page']) )
+  $volver = array('comunicacion/index/Comunicacion_page/'.$_GET['Comunicacion_page']);
+else
+  $volver = array('comunicacion/index');
+ ?>
+<center><?php echo CHtml::link('<i class="fa fa-arrow-left"></i> Volver',$volver,array('class' => 'btn btn-danger')); ?></center>
 
 <h1><?php echo $model->titulo; ?></h1>
 
@@ -41,4 +47,4 @@ $this->menu=array(
   </div>
 <?php endif; ?>
 <div class="clearfix">&nbsp;</div>
-<center><?php echo CHtml::link('<i class="fa fa-arrow-left"></i> Volver',CHttpRequest::getUrlReferrer(),array('class' => 'btn btn-danger')); ?></center>
+<center><?php echo CHtml::link('<i class="fa fa-arrow-left"></i> Volver',$volver,array('class' => 'btn btn-danger')); ?></center>

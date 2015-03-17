@@ -24,7 +24,7 @@
 		<?php if( !empty($data->revisado) && $data->revisado > 0 ): ?>
 			<span class="label label-warning"><?php echo $data->revisadopor->username; ?></span>
 		<?php else: ?>
-			<?php echo CHtml::link("Me lo pido",array('comunicacion/melopido', 'idComunicacion' => $data->id),array('class' => 'btn btn-default btn-sm')); ?>
+			<?php echo empty( $_GET['Comunicacion_page'] ) ? CHtml::link("Me lo pido",array('comunicacion/melopido', 'idComunicacion' => $data->id),array('class' => 'btn btn-default btn-sm')) : CHtml::link("Me lo pido",array('comunicacion/melopido', 'idComunicacion' => $data->id,'Comunicacion_page' => $_GET['Comunicacion_page']),array('class' => 'btn btn-default btn-sm')); ?>
 		<?php endif; ?>
 	</td>
 
@@ -48,7 +48,7 @@
 	?>
 	</td>
 	
-	<td><?php echo CHtml::link('<i class="fa fa-eye"></i>',array('view', 'id' => $data->id),array('class' => 'btn btn-success btn-sm')); ?>&nbsp;
+	<td><?php echo empty($_GET['Comunicacion_page']) ? CHtml::link('<i class="fa fa-eye"></i>',array('view', 'id' => $data->id),array('class' => 'btn btn-success btn-sm')) : CHtml::link('<i class="fa fa-eye"></i>',array('view', 'id' => $data->id, 'Comunicacion_page' => $_GET['Comunicacion_page']),array('class' => 'btn btn-success btn-sm'));?>&nbsp;
 		<?php echo CHtml::link('<i class="fa fa-user-plus"></i>',array('anadirAutor', 'id' => $data->id),array('class' => 'btn btn-warning btn-sm')); ?>&nbsp;
 		<?php echo CHtml::link('<i class="fa fa-trash-o"></i>',array('delete', 'id' => $data->id),array('class' => 'btn btn-danger btn-sm','confirm'=>'¿Quieres borrar la comunicación?')); ?>
 	</td>

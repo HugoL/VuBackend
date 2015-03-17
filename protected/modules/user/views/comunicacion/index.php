@@ -11,7 +11,9 @@ $this->menu=array(
 	array('label'=>'Manage Comunicacion', 'url'=>array('admin')),
 );
 ?>
-
+<?php if( !empty( $_GET['hash']) ): ?>
+  <input value="<?=$_GET['hash'] ?>" id="hash" type="hidden" />
+<?php endif; ?>
 <div class="table-responsive">
 <table class="table table-striped">
 	<tr>
@@ -105,6 +107,11 @@ $this->menu=array(
       }
       //location.reload(); 
     });
+  
+    if ( $( "#hash" ).length ) {
+      console.log($('#hash').val());
+      location.hash = "#"+$('#hash').val();           
+    }
 });
     </script>
 

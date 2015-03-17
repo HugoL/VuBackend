@@ -32,7 +32,7 @@ class ComunicacionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','create','update','ajaxMelopido', 'anadirAutor','melopido','pendientes'),
+				'actions'=>array('index','view','create','update','ajaxMelopido', 'anadirAutor','melopido','nomelopido','pendientes'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -49,11 +49,17 @@ class ComunicacionController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($id, $Comunicacion_page = null)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		if( !empty($Comunicacion_page) )
+			$this->render('view',array(
+				'model'=>$this->loadModel($id),
+				'pagina'=>$Comunicacion_page,
+			));
+		else
+			$this->render('view',array(
+				'model'=>$this->loadModel($id),
+			));
 	}
 
 	/**
@@ -195,7 +201,7 @@ class ComunicacionController extends Controller
 		Yii::app()->end();
 	}
 
-	public function actionMelopido( $idComunicacion ){
+	public function actionMelopido( $idComunicacion, $Comunicacion_page = null ){
 		$comunicacion = Comunicacion::model()->findByPk($idComunicacion);
 		$comunicacion->revisado = Yii::app()->user->id;
 		$comunicacion->update();
@@ -205,9 +211,46 @@ class ComunicacionController extends Controller
 		$criteria->condition = 'edicion = :edicion';
 		$criteria->params = array(':edicion' => $parametro->valor);
 
-		$dataProvider=new CActiveDataProvider('Comunicacion',array('criteria' => $criteria));
+		if( !empty($Comunicacion_page) ){
+		$dataProvider=new CActiveDataProvider('Comunicacion',array(
+			'criteria' => $criteria,
+			'pagination' => array('pageSize' => 20,'currentPage' => $Comunicacion_page),
+			
+			)
+		);
+		}else{
+			$dataProvider=new CActiveDataProvider('Comunicacion',array(
+			'criteria' => $criteria,
+			'pagination' => array('pageSize' => 20)
+			)
+		);
+		}
+		
+		$this->redirect(array('index'));
+	}
 
-		$this->render('index',array('#'=>$idComunicacion,'dataProvider'=>$dataProvider));
+	public function actionNomelopido( $idComunicacion, $Comunicacion_page = null ){
+		$comunicacion = Comunicacion::model()->findByPk($idComunicacion);
+		
+		if( $comunicacion->revisado == Yii::app()->user->id ){
+			$comunicacion->revisado = null;
+			$comunicacion->update();
+		}
+
+		if( !empty($Comunicacion_page) ){
+		$dataProvider=new CActiveDataProvider('Comunicacion',array(
+			'criteria' => $criteria,
+			'pagination' => array('pageSize' => 20,'currentPage' => $Comunicacion_page),
+			)
+		);
+		}else{
+			$dataProvider=new CActiveDataProvider('Comunicacion',array(
+			'criteria' => $criteria,
+			'pagination' => array('pageSize' => 20)
+			)
+		);
+		}
+		$this->redirect('index',array('dataProvider'=>$dataProvider,'hash'=>$idComunicacion));
 	}
 
 	public function actionPendientes( ){

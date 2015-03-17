@@ -34,6 +34,9 @@
 	<td>
 		<?php if( !empty($data->revisado) && $data->revisado > 0 ): ?>
 			<span class="label label-warning"><?php echo $data->revisadopor->username; ?></span>
+			<?php if( $data->revisado == Yii::app()->user->id ): ?>
+				<?php echo CHtml::link('No me lo pido',array('comunicacion/nomelopido', 'idComunicacion' => $data->id),array('class' => 'btn btn-default btn-sm')); ?>
+			<?php endif; ?>
 		<?php else: ?>
 			<?php echo CHtml::link("Me lo pido",array('comunicacion/melopido', 'idComunicacion' => $data->id),array('class' => 'btn btn-default btn-sm')); ?>
 		<?php endif; ?>
