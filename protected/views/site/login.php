@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 	'Login',
 );
 ?>
-<div class="container">
+<div class="container-fluid">
 
 <?php echo CHtml::beginForm(); ?>
     <?php if(Yii::app()->user->hasFlash('loginMessage')): ?>
@@ -20,7 +20,7 @@ $this->breadcrumbs=array(
 <?php endif; ?>
 <div class="login-container">
     <div id="output"></div>
-    <div><center><img src="<?php echo Yii::app()->baseUrl ?>/images/logo.jpg" alt="Acceso restringido"></center></div>
+    <div><center><img src="<?php echo Yii::app()->baseUrl ?>/images/logo.jpg" alt="Acceso restringido" class="img-responsive"></center></div>
     <div class="form-box">                
         <?php if( Yii::app()->user->hasFlash('error')): ?>
   <div class="alert alert-danger"><?php echo Yii::app()->user->getFlash('error'); ?></div><?php endif; ?>

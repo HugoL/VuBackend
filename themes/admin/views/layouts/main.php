@@ -6,8 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Administración de las jornadas Virtual USATIC">
+    <meta name="author" content="Hugo Langa">
+    <link rel="icon" href="<?php echo Yii::app()->baseUrl ?>/images/favicon.jpg">
+    <!--[if IE]><link rel="shortcut icon" href=<?php echo Yii::app()->baseUrl ?>/images/favicon.jpg"><![endif]-->
 
     <title>VirtualUSATIC</title>
 
@@ -46,12 +48,14 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
+                <?php if( (Yii::app()->user->id) ): ?>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse" id="menubtn">
                     <span class="sr-only">Ver Menú</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <?php endif; ?>
                 <a class="navbar-brand" href="http://www.virtualusatic.org">Virtual USATIC</a>
             </div>
             <!-- Top Menu Items -->
