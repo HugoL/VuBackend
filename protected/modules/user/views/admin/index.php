@@ -27,23 +27,22 @@ $('.search-form form').submit(function(){
 ?>
 <h1>Administrar usuarios</h1>
 
-<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+<div class="panel panel-default">
+  <div class="panel-body">
+		<div class="col-md-4 col-lg-4"><?php echo CHtml::link('Nuevo usuario',array('admin/create'),array('class' => 'btn btn-danger')); ?></div>
+		<div class="col-md-4 col-lg-4"><?php echo CHtml::link('Administrar campos de perfil',array('profileField/admin'),array('class' => 'btn btn-default')); ?></div>
+		<div class="col-md-4 col-lg-4"><?php echo CHtml::link('Crear campo de perfil',array('profileField/create'),array('class' => 'btn btn-default')); ?></div>
+	</div>
+</div><!-- /panel -->
 
-<div class="col-md-4 col-lg-4"><?php echo CHtml::link('Nuevo usuario',array('admin/create'),array('class' => 'btn btn-danger')); ?></div>
-<div class="col-md-4 col-lg-4"><?php echo CHtml::link('Administrar campos de perfil',array('profileField/admin'),array('class' => 'btn btn-default')); ?></div>
-<div class="col-md-4 col-lg-4"><?php echo CHtml::link('Crear campo de perfil',array('profileField/create'),array('class' => 'btn btn-default')); ?></div>
-
-</div>
 <?php echo CHtml::link('Búsqueda avanzada','#',array('class'=>'search-button')); ?>
-
-
 
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
     'model'=>$model,
 )); ?>
 </div><!-- search-form -->
-
+<div class="table-responsive">
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'user-grid',
 	'dataProvider'=>$model->search(),
@@ -77,3 +76,4 @@ $('.search-form form').submit(function(){
 		),
 	),
 )); ?>
+</div><!-- /table-responsive -->

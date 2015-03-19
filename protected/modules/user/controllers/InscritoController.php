@@ -111,8 +111,9 @@ class InscritoController extends Controller
 		if( isset($_POST['Inscrito']) ){
 			$model->attributes = $_POST['Inscrito'];
 			$model->update();
-				
-			$this->redirect(Yii::app()->request->urlReferrer);
+			if( $id > 0)
+				$id--;	
+			$this->redirect(Yii::app()->request->urlReferrer."#".$id);
 		}
 	}
 

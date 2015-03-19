@@ -143,4 +143,20 @@ $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
 	),
 )); */ ?>
 
+<?php // LISTO LOS TALLERES A LOS QUE ASISTE EL INSCRITO ?>
+<?php if( !empty($model->inscritoTaller )): ?>
+	<div class="clearfix">&nbsp;</div>
+	<div class="panel panel-default">
+ 	 <div class="panel-heading">Talleres a los que asiste</div>
+ 	 <div class="panel-body">
+	<dl class="dl-horizontal">
+  <?php foreach ($model->inscritoTaller as $key => $inscritoTaller): ?>
+
+  <dd><?php echo $inscritoTaller->taller->nombre; ?></dd>
+  <?php endforeach; ?>
+  </dl>
+  </div>
+</div>
+<?php endif; ?>
+
 <center><?php echo CHtml::link('<i class="fa fa-arrow-left"></i> Volver',CHttpRequest::getUrlReferrer(),array('class' => 'btn btn-danger btn-lg')); ?></center>

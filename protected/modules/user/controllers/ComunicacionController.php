@@ -130,17 +130,18 @@ class ComunicacionController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
+	public function actionIndex( )
 	{
 		$parametro = Dato::model()->find('clave = "edicion"');
 		$criteria = new CDbCriteria;
 		$criteria->condition = 'edicion = :edicion';
 		$criteria->params = array(':edicion' => $parametro->valor);
-
+		
 		$dataProvider=new CActiveDataProvider('Comunicacion',array(
-			'criteria' => $criteria,
-			'pagination' => array('pageSize' => 20),
+				'criteria' => $criteria,
+				'pagination' => array('pageSize' => 20),
 			));
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -201,7 +202,7 @@ class ComunicacionController extends Controller
 		Yii::app()->end();
 	}
 
-	public function actionMelopido( $idComunicacion, $Comunicacion_page = null ){
+	public function actionMelopido( $idComunicacion, $Comunicacion_page = 1 ){
 		$comunicacion = Comunicacion::model()->findByPk($idComunicacion);
 		$comunicacion->revisado = Yii::app()->user->id;
 		$comunicacion->update();
@@ -211,7 +212,7 @@ class ComunicacionController extends Controller
 		$criteria->condition = 'edicion = :edicion';
 		$criteria->params = array(':edicion' => $parametro->valor);
 
-		if( !empty($Comunicacion_page) ){
+		/*if( !empty($Comunicacion_page) ){
 		$dataProvider=new CActiveDataProvider('Comunicacion',array(
 			'criteria' => $criteria,
 			'pagination' => array('pageSize' => 20,'currentPage' => $Comunicacion_page),
@@ -224,9 +225,10 @@ class ComunicacionController extends Controller
 			'pagination' => array('pageSize' => 20)
 			)
 		);
-		}
-		
-		$this->redirect(array('index'));
+		}*/
+		if( $idComunicacion > 0 )
+			$idComunicacion --;
+		$this->redirect($this->redirect(Yii::app()->request->urlReferrer."#".$idComunicacion));
 	}
 
 	public function actionNomelopido( $idComunicacion, $Comunicacion_page = null ){
@@ -236,28 +238,14 @@ class ComunicacionController extends Controller
 			$comunicacion->revisado = null;
 			$comunicacion->update();
 		}
-
-		if( !empty($Comunicacion_page) ){
-		$dataProvider=new CActiveDataProvider('Comunicacion',array(
-			'criteria' => $criteria,
-			'pagination' => array('pageSize' => 20,'currentPage' => $Comunicacion_page),
-			)
-		);
-		}else{
-			$dataProvider=new CActiveDataProvider('Comunicacion',array(
-			'criteria' => $criteria,
-			'pagination' => array('pageSize' => 20)
-			)
-		);
-		}
-		$this->redirect('index',array('dataProvider'=>$dataProvider,'hash'=>$idComunicacion));
+		$this->redirect($this->redirect(Yii::app()->request->urlReferrer));
+		
 	}
 
 	public function actionPendientes( ){
 
 		$criteria = new CDbCriteria;
-		$criteria->condition = 'revisado = '.Yii::app()->user->id.' AND aprobado = 0';
-
+		$criteria->condition = 'revisado = '.Yii::app()->user->id.' AND ISNULL(aprobado)';
 		$dataProvider=new CActiveDataProvider('Comunicacion',array('criteria' => $criteria));
 
 		$this->render('pendientes',array('dataProvider'=>$dataProvider));

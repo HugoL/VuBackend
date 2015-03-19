@@ -6,6 +6,7 @@
 <tr>
 
 	<td>
+		<a name="<?=$data->id?>"></a>
 	<?php echo CHtml::encode($data->nombre); ?>
 	</td>
 

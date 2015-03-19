@@ -15,6 +15,7 @@ $this->menu=array(
 <h1>Talleres</h1>
 <center><?php echo CHtml::link('Nuevo taller',array('create'),array('class'=>'btn btn-lg btn-danger')); ?></center><br />
 <?php if( !empty($model) ):  ?>
+	<div class="table-responsive">
 	<table class="table table-bordered table-hover table-striped">
 	<thead>
 		<tr>
@@ -33,6 +34,7 @@ $this->menu=array(
 		<?php endforeach; ?>
 	</tbody>
 	</table>
+	</div><!-- /table-responsive -->
 <?php else: ?>
 	<div class="alert alert-info">No hay talleres en esta edición</div>
 <?php endif; ?>
