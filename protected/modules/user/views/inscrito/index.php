@@ -18,6 +18,14 @@ $this->menu=array(
     <div class="alert alert-danger"><?php echo Yii::app()->user->getFlash('error') ?></div>
 <?php endif; ?>
 
+<?php 
+//Opciones para el select de filtrar los datos
+if( Yii::app()->user->rol == 4) //Este rol solo puede ver asistentes de pago (asistentes y comunicadores)
+     $opciones = array( 1=>'Cualquiera de pago', 2=>'Asistente', 3=>'Ponente');
+else
+    $opciones = array( 0=>'Mostrar todos', 1=>'Cualquiera de pago', 2=>'Asistente', 3=>'Ponente', 4=>'Gratuito');
+?>
+
 <div class="row">
 	<div class="col-lg-3 col-md-6">
         <div class="panel panel-green">
@@ -30,7 +38,7 @@ $this->menu=array(
                         <div class="huge"></div>
                         <div><?php 
 							echo CHtml::beginForm(CHtml::normalizeUrl(array('inscrito/index')), 'get', array('id'=>'filter-form','class' => 'form-inline'))
-    						. CHtml::dropDownList('f', (isset($_GET['f'])) ? $_GET['f'] : '', array( 0=>'Mostrar todos', 1=>'Cualquiera de pago', 2=>'Asistente', 3=>'Ponente', 4=>'Gratuito') ,array('id'=>'filtro','class'=>'form-control'))
+    						. CHtml::dropDownList('f', (isset($_GET['f'])) ? $_GET['f'] : '', $opciones ,array('id'=>'filtro','class'=>'form-control'))
     						. CHtml::endForm(); ?><br/>Filtrar inscritos</div>
                     </div>
                 </div>

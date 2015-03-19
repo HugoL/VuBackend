@@ -65,7 +65,7 @@
 	}
 	?>
 	</td></tr>
-
+<?php if( Yii::app()->getModule('user')->esAdministrador() ): ?>
 	<tr>
 	<td>Operaciones</td>
 	<td>
@@ -73,6 +73,7 @@
 		<?php echo CHtml::link('<i class="fa fa-trash-o"></i>',array('delete', 'id' => $data->id),array('class' => 'btn btn-danger btn-sm','confirm'=>'¿Quieres borrar la comunicación?')); ?>
 	</td>
 	</tr>
+<?php endif; ?>
 	<?php /*
 	
 

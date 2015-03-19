@@ -178,6 +178,9 @@ class InscritoController extends Controller
 		$criteria->addCondition('edicion = :edicion');
 		$criteria->params = array(':edicion' => $parametro->valor);
 
+		if( Yii::app()->user->rol == 4 ) //si es este rol que solo aparezcan los inscritos NO GRATUITOS
+			$criteria->addCondition('id_rol <> 3');
+
 		if( !empty($export) && $export == 1 ){ //si los datos se van a exportar no tienen que ir paginados
 			$dataProvider=new CActiveDataProvider('Inscrito',array(
             'criteria'=>$criteria,

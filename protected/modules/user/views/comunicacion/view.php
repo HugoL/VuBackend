@@ -39,7 +39,7 @@ else
     <dt><?php echo $comunicador->usuario->email; ?></dt>
     <dd><?php 
         echo $comunicador->usuario->nombre." ".$comunicador->usuario->apellido1;
-        if(Yii::app()->user->rol == 1 || Yii::app()->user->rol == 2)
+        if( Yii::app()->getModule('user')->esAdministrador() )
         	echo " ".CHtml::link('<i class="fa fa-icon fa-trash-o"> </i>',array('inscrito/borrarParticipacion', 'id' => $comunicador->id),array('class' => 'label label-danger','alt' => 'Borrar','confirm'=>'El inscrito dejará de ser participante de la comunicación'));
       ?></dd>    
   <?php endforeach; ?>
