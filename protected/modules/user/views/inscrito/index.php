@@ -117,7 +117,7 @@ else
     </div>
 </div>
 
-<div class="clearfix">&nbsp;</div>
+<h3>Inscritos edición <?= $edicion ?></h3>
 <div class="table-responsive">
 <table class="table table-striped">
 	<tr>

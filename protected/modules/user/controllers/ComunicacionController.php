@@ -144,6 +144,7 @@ class ComunicacionController extends Controller
 
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'edicion'=>$parametro->valor,
 		));
 	}
 

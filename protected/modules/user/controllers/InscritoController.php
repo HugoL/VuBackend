@@ -202,6 +202,7 @@ class InscritoController extends Controller
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'talleres'=>$talleres,
+			'edicion'=>$parametro->valor,
 		));
 	}
 

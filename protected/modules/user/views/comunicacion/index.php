@@ -11,6 +11,7 @@ $this->menu=array(
 	array('label'=>'Manage Comunicacion', 'url'=>array('admin')),
 );
 ?>
+<center><h3>Comunicaciones edición <?= $edicion ?></h3></center>
 <?php if( !empty( $_GET['hash']) ): ?>
   <input value="<?=$_GET['hash'] ?>" id="hash" type="hidden" />
 <?php endif; ?>
