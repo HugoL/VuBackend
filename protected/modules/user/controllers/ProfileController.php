@@ -233,7 +233,8 @@ class ProfileController extends Controller
 
 			$inscritos = $this->totalInscritosDePago();
 		
-			$this->render('consultor', array('inscritos'=>$inscritos, 'pagado' => $pagado, 'total' => $total ,'edicion' => $edicion->valor));
+			//$this->render('consultor', array('inscritos'=>$inscritos, 'pagado' => $pagado, 'total' => $total ,'edicion' => $edicion->valor));
+			$this->redirect(array('inscrito/index'));
 		}else{
 			Yii::app()->end();
 		}

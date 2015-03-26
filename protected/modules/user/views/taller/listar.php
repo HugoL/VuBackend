@@ -23,14 +23,13 @@ $this->menu=array(
 			<th>Nombre</th>
 			<th>Observaciones</th>
 			<th>Precio</th>
-			<th>Edición</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php foreach( $model as $key => $taller ): ?>
 		<tr>
-			<?php $this->renderPartial('_view',array('data'=>$taller)); ?>
+			<?php $this->renderPartial('_ver',array('data'=>$taller)); ?>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>

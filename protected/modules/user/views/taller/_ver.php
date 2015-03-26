@@ -19,9 +19,5 @@
 	</td>
 
 	<td>
-	<?php echo CHtml::encode($data->jornada); ?>
-	</td>
-
-	<td>
 		<?php echo CHtml::link('<i class="fa fa-pencil"></i>',array('update','id'=>$data->id),array('class'=>'btn btn-primary')); ?> <?php echo CHtml::link('<i class="fa fa-trash"></i>',array('delete','id'=>$data->id),array('class'=>'btn btn-danger')); ?>
 	</td>

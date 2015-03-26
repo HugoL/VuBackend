@@ -37,6 +37,13 @@
 		<?php echo $form->error($model,'precio'); ?>
 		</div>
 	</div>
+	<div class="form-group col-md-3 col-lg-3 col-sm-6">
+		<?php echo $form->labelEx($model,'precio_detalle'); ?>
+		<div class="">
+		<?php echo $form->textField($model,'precio_detalle',array('class' => 'form-control','placeholder' => 'Precio tal como se verá en el formulario')); ?>
+		<?php echo $form->error($model,'precio_detalle'); ?>
+		</div>
+	</div>
 	<div class="clearfix">&nbsp;</div>
 	<div class="form-group col-md-3 col-lg-3 col-sm-6">
 		<?php echo $form->labelEx($model,'abreviacion',array('class' => 'contro-label')); ?>
