@@ -13,8 +13,13 @@ $this->menu=array(
 ?>
 
 <h1>Talleres</h1>
-<center><?php echo CHtml::link('Nuevo taller',array('create'),array('class'=>'btn btn-lg btn-danger')); ?></center><br />
-<?php if( !empty($model) ):  ?>
+
+<center><?php 
+	echo CHtml::link('Nuevo taller',array('create'),array('class'=>'btn btn-lg btn-danger'));  ?>
+	&nbsp;
+	<?php echo CHtml::link('Talleres de la edición actual',array('listar'),array('class' => 'btn btn-primary btn-lg'));
+	?></center><br />
+<?php if( !empty($dataProvider) ):  ?>
 	<div class="table-responsive">
 	<table class="table table-bordered table-hover table-striped">
 	<thead>
@@ -28,7 +33,7 @@ $this->menu=array(
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach( $model as $key => $taller ): ?>
+		<?php foreach( $dataProvider as $key => $taller ): ?>
 		<tr>
 			<?php $this->renderPartial('_view',array('data'=>$taller)); ?>
 		</tr>

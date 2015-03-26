@@ -13,7 +13,8 @@ $this->menu=array(
 ?>
 
 <h1>Talleres</h1>
-<center><?php echo CHtml::link('Nuevo taller',array('create'),array('class'=>'btn btn-lg btn-danger')); ?></center><br />
+<center><?php echo CHtml::link('Nuevo taller',array('create'),array('class'=>'btn btn-lg btn-danger')); ?>&nbsp;
+	<?php echo CHtml::link('Talleres de todas las ediciones',array('index'),array('class' => 'btn btn-primary btn-lg'));?></center><br />
 <?php if( !empty($model) ):  ?>
 	<div class="table-responsive">
 	<table class="table table-bordered table-hover table-striped">

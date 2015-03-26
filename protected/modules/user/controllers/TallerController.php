@@ -125,7 +125,7 @@ class TallerController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Taller');
+		$dataProvider=Taller::model()->findAll();
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -136,7 +136,7 @@ class TallerController extends Controller
 		$criteria = new CDbCriteria;
 		$criteria->condition = 'jornada = '.$dato->valor;
 		$dataProvider = Taller::model()->findAll($criteria);
-		$this->render('index',array(
+		$this->render('listar',array(
 			'model'=>$dataProvider,
 		));
 	}
