@@ -293,7 +293,8 @@ class ProfileController extends Controller
 		$criteria->params = array(':edicion' => $edicion);	
 		//$criteria->condition = 'edicion = :edicion';		
 		$total = Pago::model()->find( $criteria );
-
+		if( empty($total->total) )
+			$total->total = 0;
 		return $total->total;
 	}
 

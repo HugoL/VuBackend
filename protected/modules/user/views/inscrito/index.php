@@ -20,10 +20,10 @@ $this->menu=array(
 
 <?php 
 //Opciones para el select de filtrar los datos
-if( Yii::app()->user->rol == 4) //Este rol solo puede ver asistentes de pago (asistentes y comunicadores)
-     $opciones = array( 1=>'Cualquiera de pago', 2=>'Asistente', 3=>'Ponente');
+if( Yii::app()->user->rol == 4 ) //Este rol solo puede ver asistentes de pago (asistentes y comunicadores)
+     $opciones = array( 1=>'Cualquiera de pago', 2=>'Asistente', 3=>'Ponente' );
 else
-    $opciones = array( 0=>'Mostrar todos', 1=>'Cualquiera de pago', 2=>'Asistente', 3=>'Ponente', 4=>'Gratuito');
+    $opciones = array( 0=>'Mostrar todos', 1=>'Cualquiera de pago', 2=>'Asistente', 3=>'Ponente', 4=>'Gratuito' );
 ?>
 
 <div class="row">
