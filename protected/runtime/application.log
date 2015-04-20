@@ -6074,3 +6074,66 @@ Stack trace:
 REQUEST_URI=/~hugo/vubackend/user/taller/listar
 HTTP_REFERER=http://localhost/~hugo/vubackend/user/comunicacion/pendientes
 ---
+2015/04/20 12:46:33 [error] [php] Trying to get property of non-object (C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ProfileController.php:314)
+Stack trace:
+#0 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilterChain.php(133): ProfileController->runAction()
+#2 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#4 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CInlineFilter.php(58): ProfileController->filterAccessControl()
+#5 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#6 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(265): ProfileController->runActionWithFilters()
+#8 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(282): ProfileController->run()
+#9 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php(13): CWebApplication->run()
+REQUEST_URI=/~hugo/vubackend/user/profile/administrador
+in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ProfileController.php (314)
+in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ProfileController.php (185)
+in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php (13)
+2015/04/20 12:47:23 [error] [php] Trying to get property of non-object (C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ProfileController.php:314)
+Stack trace:
+#0 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilterChain.php(133): ProfileController->runAction()
+#2 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#4 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CInlineFilter.php(58): ProfileController->filterAccessControl()
+#5 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#6 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(265): ProfileController->runActionWithFilters()
+#8 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(282): ProfileController->run()
+#9 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#11 C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php(13): CWebApplication->run()
+REQUEST_URI=/~hugo/vubackend/user/profile/administrador
+in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ProfileController.php (314)
+in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ProfileController.php (185)
+in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php (13)
+2015/04/20 12:54:19 [error] [system.db.CDbCommand] CDbCommand::fetch() falló: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound. La sentencia SQL ejecutada fue: SELECT sum(cantidad_pagar) AS total FROM `vu_pagos` `t` WHERE edicion = :edicion LIMIT 1.
+in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ProfileController.php (293)
+in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ProfileController.php (179)
+in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php (13)
+2015/04/20 12:54:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[HY093]: Invalid parameter number: no parameters were bound. The SQL statement executed was: SELECT sum(cantidad_pagar) AS total FROM `vu_pagos` `t` WHERE edicion = :edicion LIMIT 1' in C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\db\CDbCommand.php(414): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\db\ar\CActiveRecord.php(1297): CDbCommand->queryRow()
+#2 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\db\ar\CActiveRecord.php(1402): CActiveRecord->query(Object(CDbCriteria))
+#3 C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ProfileController.php(293): CActiveRecord->find(Object(CDbCriteria))
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ProfileController.php(179): ProfileController->totalPagar()
+#5 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\actions\CInlineAction.php(49): ProfileController->actionAdministrador()
+#6 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('administrador')
+#15 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/profile/ad...')
+#16 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#17 C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/~hugo/vubackend/user/profile/administrador
+---

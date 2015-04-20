@@ -43,7 +43,7 @@ class Taller extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre, jornada, precio, abreviacion', 'required'),
+			array('nombre, jornada, abreviacion', 'required'),
 			array('precio', 'numerical'),
 			array('nombre', 'length', 'max'=>256),
 			array('observaciones', 'length', 'max'=>512),

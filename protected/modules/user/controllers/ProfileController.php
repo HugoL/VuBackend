@@ -274,7 +274,9 @@ class ProfileController extends Controller
 	}
 
 	protected function totalComunicaciones(){
+		$edicion = $this->edicionActual();
 		$criteria = new CDbCriteria;
+		$criteria->condition = 'edicion = '.$edicion;
 		$criteria->select = 'count(*) as total';
 		$inscritos = Inscrito::model()->find( $criteria );
 
@@ -284,8 +286,12 @@ class ProfileController extends Controller
 	}
 
 	protected function totalPagar(){
+		$edicion = $this->edicionActual();
 		$criteria = new CDbCriteria;
-		$criteria->select = 'sum(cantidad_pagar) AS total';			
+		$criteria->select = 'sum(cantidad_pagar) AS total';
+		$criteria->join = 'inner join vu_inscritos i ON t.id_usuario = i.id AND i.edicion = :edicion';
+		$criteria->params = array(':edicion' => $edicion);	
+		//$criteria->condition = 'edicion = :edicion';		
 		$total = Pago::model()->find( $criteria );
 
 		return $total->total;
@@ -293,25 +299,35 @@ class ProfileController extends Controller
 
 	protected function totalpagado(){
 		$criteria = new CDbCriteria;
+		$edicion = $this->edicionActual();
 		$criteria->select = 'sum(cantidad_pagar) AS total';
 		$criteria->join = 'inner join vu_inscritos i ON t.id_usuario = i.id AND i.pagado = 1';
+		$criteria->condition = 'edicion = :edicion';
+		$criteria->params = array(':edicion' => $edicion);
 		$pagado = Pago::model()->find( $criteria );
-
+		if( empty($pagado->total) )
+			$pagado->total = 0;
 		return $pagado->total;
 	}
 
 	protected function totalInscritos(){
-		$criteria = new CDbCriteria;
-		$criteria->select = 'count(*) as total';
-		$inscritos = Inscrito::model()->find( $criteria );
+		$edicion = $this->edicionActual();
 
-		return $inscritos->total;
+		$criteria = new CDbCriteria;		
+		//$criteria->select = 'count(*) as total';
+		$criteria->condition = 'edicion = :edicion';
+		$criteria->params = array(':edicion' => $edicion);
+		$inscritos = Inscrito::model()->count( $criteria );
+
+		return $inscritos;
 	}
 
 	protected function totalInscritosDePago(){
+		$edicion = $this->edicionActual();
 		$criteria = new CDbCriteria;
 		$criteria->select = 'count(*) as total';
-		$criteria->condition = 'id_rol != 3';
+		$criteria->condition = 'id_rol != 3 AND edicion = :edicion';
+		$criteria->params = array(':edicion' => $edicion);
 		$inscritos = Inscrito::model()->find( $criteria );
 
 		return $inscritos->total;
@@ -327,12 +343,18 @@ class ProfileController extends Controller
 		array_push($datos, array('Edicion','Inscritos'));
 		//los incritos de la primera edición no están en la base de datos porque los gestionó la feuz, así que los introduzco manualmente
 		array_push($datos, array('2013',340));
-		array_push($datos,array('2014',560));
+		//array_push($datos,array('2014',560));
 		foreach( $inscritos as $key => $inscrito ){
 			array_push( $datos, array($inscrito->edicion, intval($inscrito->total)) );
 		}
 		return $datos;
 
+	}
+
+	protected function edicionActual(){
+		$edicion = Dato::model()->find('clave = "edicion"');
+
+		return $edicion->valor;
 	}
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
