@@ -88,8 +88,9 @@ else
                           <select class="form-control" name="t" id="taller" value="<?=isset($_GET['t']) ? CHtml::encode($_GET['t']) : '' ; ?>">
                             <option></option>
                             <?php foreach ($talleres as $key => $taller) : ?>
-                                <option value="<?= $taller->id ?>" <?php if( isset($_GET['t']) && $_GET['t'] == $taller->id ) echo "selected"; ?>><?= $taller->nombre ?></option>
+                                <option value="<?= $taller->id ?>" <?php if( isset($_GET['t']) && $_GET['t'] == $taller->id ) echo "selected"; ?>><?= $taller->nombre ?></option>                    
                             <?php endforeach; ?>
+                             <option value="todos" <?php if( isset($_GET['t']) && $_GET['t'] == 0 ) echo "selected"; ?>>TODOS</option>
                           </select>
                         </form>
                           </div><!-- /input-group -->
@@ -117,7 +118,10 @@ else
     </div>
 </div>
 
-<h3>Inscritos edición <?= $edicion ?></h3>
+<h3>Inscritos edición <?= $edicion ?> <?php if( Yii::app()->user->rol == 4 ): //a la feuz le muestro aquí el total a pagar ?>
+    <span class="label label-success">Total a pagar: <?php echo $totalPagar; ?> €</span>
+<?php endif; ?></h3>
+
 <div class="table-responsive">
 <table class="table table-striped">
 	<tr>

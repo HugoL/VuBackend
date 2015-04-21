@@ -31,7 +31,7 @@ class InscritoController extends Controller
 				'users'=>array('*'),
 			),	
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','create','update','updateObservaciones'),
+				'actions'=>array('index','view','create','update','updateObservaciones','marcarPagado','marcarNoPagado'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -51,10 +51,23 @@ class InscritoController extends Controller
 	public function actionView($id){
 		$inscritoComunicacion = new InscritoComunicacion;
 		$comunicaciones = Comunicacion::model()->findAll();
+		$model = $this->loadModel($id);
+
+		$parametro = Dato::model()->find('clave = "edicion"');
+		$reincidente = false;
+		//compruebo si el inscrito ya ha participado en otras ediciones anteriores
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'email = :email AND edicion <> :actual';
+		$criteria->params = array(':email' => $model->email, ':actual'=>$parametro->valor);
+		$existe = Inscrito::model()->find( $criteria );
+		if( !empty( $existe ) )
+			$reincidente = true;
+
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
 			'inscritoComunicacion'=>$inscritoComunicacion,
 			'comunicaciones'=>$comunicaciones,
+			'reincidente'=>$reincidente,
 		));
 	}
 
@@ -151,7 +164,11 @@ class InscritoController extends Controller
 
     	if( !empty($_GET['t']) ){
     		$t = strip_tags($_GET['t']);
-    		$criteria->join = "INNER JOIN ".InscritoTaller::model()->tableSchema->name." i ON t.id = i.id_usuario AND i.id_taller = ".$t;
+    		if( strcmp($t,"todos") == 0 ){
+    			$criteria->condition = 'talleres = 1';
+    		}else{
+    			$criteria->join = "INNER JOIN ".InscritoTaller::model()->tableSchema->name." i ON t.id = i.id_usuario AND i.id_taller = ".$t;
+    		}
     	}
 
     	if( !empty($_GET['f']) ){
@@ -197,12 +214,17 @@ class InscritoController extends Controller
             ));
 		}
 
-		$talleres = Taller::model()->findAll();
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'jornada = :edicion';
+		$criteria->params = array(':edicion' => $parametro->valor);
+		$talleres = Taller::model()->findAll($criteria);
+		$totalPagar = $this->totalPagar();
 
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'talleres'=>$talleres,
 			'edicion'=>$parametro->valor,
+			'totalPagar'=>$totalPagar,
 		));
 	}
 
@@ -219,6 +241,20 @@ class InscritoController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+
+	public function actionMarcarPagado( $id ){
+		$model = $this->loadModel($id);
+		$model->pagado = 1;
+		$model->update();
+	}
+
+	public function actionMarcarNoPagado( $id ){
+		$model = $this->loadModel($id);
+		$model->pagado = 0;
+		$model->update();
+
+		$this->redirect(array('inscrito/view/id/'.$id));
 	}
 
 	protected function createExcel( $dataProvider ){
@@ -368,6 +404,19 @@ class InscritoController extends Controller
  		$this->redirect(Yii::app()->request->urlReferrer);
 
   }
+
+  protected function totalPagar(){
+		$edicion = Dato::model()->find('clave = "edicion"');		
+		$criteria = new CDbCriteria;
+		$criteria->select = 'sum(cantidad_pagar) AS total';
+		$criteria->join = 'inner join vu_inscritos i ON t.id_usuario = i.id AND i.edicion = :edicion';
+		$criteria->params = array(':edicion' => $edicion->valor);	
+		//$criteria->condition = 'edicion = :edicion';		
+		$total = Pago::model()->find( $criteria );
+		if( empty($total->total) )
+			$total->total = 0;
+		return $total->total;
+	}
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

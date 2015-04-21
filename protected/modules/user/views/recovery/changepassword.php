@@ -5,9 +5,9 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1><?php echo UserModule::t("Change Password"); ?></h1>
+<h1>Cambiar contraseña</h1>
 
-
+<div class="container-fluid">
 <div class="form">
 <?php echo CHtml::beginForm(); ?>
 
@@ -29,8 +29,9 @@ $this->breadcrumbs=array(
 	
 	
 	<div class="row submit">
-	<?php echo CHtml::submitButton(UserModule::t("Save")); ?>
+	<?php echo CHtml::submitButton(UserModule::t("Save"),array('class'=>'btn btn-danger')); ?>
 	</div>
 
 <?php echo CHtml::endForm(); ?>
 </div><!-- form -->
+</div>

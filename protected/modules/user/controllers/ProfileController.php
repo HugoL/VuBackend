@@ -87,6 +87,7 @@ class ProfileController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$user = User::model()->findByPk($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -94,12 +95,14 @@ class ProfileController extends Controller
 		if(isset($_POST['Profile']))
 		{
 			$model->attributes=$_POST['Profile'];
-			if($model->save())
+			$user->attributes=$_POST['User'];
+			if($model->save() && $user->save())
 				$this->redirect(array('view','id'=>$model->user_id));
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
+			'user'=>$user,
 		));
 	}
 

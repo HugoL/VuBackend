@@ -19,7 +19,27 @@
 	</td>
 
 	<td>
-	<?php echo CHtml::encode($data->pagado) == 0 ? "No" : "Sí"; ?>
+	<?php if( Yii::app()->user->rol != 4 ): 
+			echo CHtml::encode($data->pagado) == 0 ? "No" : "Sí"; 
+		  else: ?>
+			<!-- casilla para marcar como pagado -->
+			<label class="checkbox-inline" for="pagado">
+                    <input type="checkbox" name="pagado[]" id="pagado<?= $data->id ?>" value="<?= $data->id; ?>" <?php if ($data->pagado == 1 ) echo "checked='checked' disabled='disabled'"; ?> >
+                    <?php 
+        			$url = $this->createUrl('inscrito/marcarPagado');
+        			$js = '
+        			 $("input[name=\'pagado[]\']").change(function(){
+        			 	var id;
+        			 	id = $(this).val();
+        			    $.post("'.$url.'/id/"+id, function(data) {
+        			        $(this).attr("disabled", true);
+        			    });
+        			});
+        			';
+        			Yii::app()->clientScript->registerScript('chk', $js);
+					?>
+                    </label>
+			<?php endif; ?>
 	</td>
 	
 	<td>

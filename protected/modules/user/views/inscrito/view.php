@@ -28,9 +28,15 @@ $this->menu=array(
 <?php endif; ?>
 
 <center><?php echo CHtml::link('<i class="fa fa-arrow-left"></i> Volver',CHttpRequest::getUrlReferrer(),array('class' => 'btn btn-danger btn-lg')); ?></center>
-<h1><?php echo $model->nombre. " ".$model->apellido1." ".$model->apellido2; ?></h1>
-  
+<h1><?php echo $model->nombre. " ".$model->apellido1." ".$model->apellido2; ?><small><?php //indico si el inscrito ya ha participado en anteriores ediciones 
+ 	if( $reincidente ): ?>
+ 	<span class="label label-warning">Reincidente</span>
+  <?php endif; ?>  <small></h1>
 
+<?php //Opcion para que la feuz pueda marcar/desmarcar como pagado 
+	if(Yii::app()->user->rol == 4 && $model->pagado == 1): ?>
+	<?php echo CHtml::link('Marcar como NO PAGADO',array('inscrito/marcarNoPagado/id/'.$model->id),array('class'=>'btn btn-primary btn-sm')); ?> 
+<?php endif; ?>
 <?php // LISTO LAS COMUNICACIONES ASOCIADAS AL INSCRITO ?>
 <?php if( !empty($model->inscritoComunicacion )): ?>
 	<div class="panel panel-default">

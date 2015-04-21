@@ -3,14 +3,30 @@
 class RecoveryController extends Controller
 {
 	public $defaultAction = 'recovery';
-	
+	public $layout='//layouts/column2';
 	/**
 	 * Recovery password
 	 */
 	public function actionRecovery () {
 		$form = new UserRecoveryForm;
+		$find = User::model()->findbyPk(Yii::app()->user->id);
 		if (Yii::app()->user->id) {
-		    	$this->redirect(Yii::app()->controller->module->returnUrl);
+				$form2 = new UserChangePassword;
+		    	if(isset($_POST['UserChangePassword'])) {
+					$form2->attributes=$_POST['UserChangePassword'];
+					if($form2->validate()) {
+						$find->password = Yii::app()->controller->module->encrypting($form2->password);
+						$find->activkey=Yii::app()->controller->module->encrypting(microtime().$form2->password);
+						if ($find->status==0) {
+							$find->status = 1;
+						}
+						$find->save();
+						Yii::app()->user->setFlash('recoveryMessage',UserModule::t("New password is saved."));
+						$this->redirect(array('/site/logout'));
+					}
+				} 
+					$this->render('changepassword',array('form'=>$form2));
+
 		    } else {
 				$email = ((isset($_GET['email']))?$_GET['email']:'');
 				$activkey = ((isset($_GET['activkey']))?$_GET['activkey']:'');

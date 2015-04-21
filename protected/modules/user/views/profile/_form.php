@@ -3,7 +3,9 @@
 /* @var $model Profile */
 /* @var $form CActiveForm */
 ?>
-
+<div class="container">
+<div class="row-fluid">
+	
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -34,3 +36,5 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+</div>
+</div>
