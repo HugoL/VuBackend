@@ -104,11 +104,26 @@
 
 	<td><?php echo CHtml::link('<i class="fa fa-icon fa-eye"> </i>',array('view', 'id' => $data->id),array('class' => 'btn btn-success','alt' => 'Ver detalles')); ?>&nbsp;
 	<?php if( Yii::app()->user->rol == 1 || Yii::app()->user->rol == 2 )
-		echo CHtml::link('<i class="fa fa-icon fa-trash-o"> </i>', array('inscrito/delete', 'id'=>$data->id),
+		/*echo CHtml::link('<i class="fa fa-icon fa-trash-o"> </i>', array('inscrito/delete', 'id'=>$data->id),
   		array(
     		'submit'=>array('inscrito/delete', 'id'=>$data->id),
     		'class' => 'btn btn-danger','confirm'=>'Se eliminará el inscrito'
   			)
-		); ?>
+		); */
+echo CHtml::link('<i class="fa fa-icon fa-trash-o"> </i>', $this->createUrl('inscrito/delete', array('id' => $data->id)), 
+    array(
+       // for htmlOptions
+       'onclick' => ' {' . CHtml::ajax(array(
+       	'type'=>'POST',
+  		'url'=>$this->createUrl('inscrito/delete', array('id' => $data->id,'ajax'=>'delete')),// copy from point 1 above
+  		'complete'=>'js:function(jqXHR, textStatus){$.fn.yiiListView.update("ajaxListView");}',
+       'beforeSend' => 'js:function(){if(confirm("Estas seguro que quieres eliminar?"))return true;else return false;}',
+       'success' => "js:function(html){ window.location.reload() }"
+       )) .
+       'return false;}', // returning false prevents the default navigation to another url on a new page 
+       'class' => 'btn btn-danger',
+       'id' => 'x' . $data->id)
+   );
+	?>
 	</td>
 </tr>
