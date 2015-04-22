@@ -34,18 +34,42 @@
 	
 	<td>
 	<?php 
-	switch($data->aprobado) {
-		case 0 :
-			echo " - ";
-		break;
-		case 1 :
-			echo "Sí";
-		break;
-		case 2 :
-			echo "No";
-		break;
+	if( $data->revisado == Yii::app()->user->id ) { 
+		$listData = array(
+			0 => '-',
+			1 => 'Sí',
+			2 => 'No'
+		);
+		echo CHtml::dropDownList('aprobado[]','select',$listData,array('class'=> 'form-control', 'id' => 'aprobado'.$data->id));
+
+        			$url = $this->createUrl('comunicacion/marcarAprobado');
+        			$js = '
+        			 $("input[name=\'aprobado[]\']").change(function(){        			 	
+        			 	var valor;
+        			 	valor = $(this).val();
+        			 	alert("valor: "+valor+", id :"+this.id);
+        			    $.post("'.$url.'/id/"+this.id+"/valor/"+valor, function(data) {
+        			        //$(this).attr("disabled", true);
+        			    });
+        			});
+        			';
+        			Yii::app()->clientScript->registerScript('aprobar', $js);
+					
+	}else{		
+		switch($data->aprobado) {
+			case 0 :
+				echo " - ";
+			break;
+			case 1 :
+				echo "Sí";
+			break;
+			case 2 :
+				echo "No";
+			break;
+		}
 	}
 	?>
+	
 	</td>
 	
 	<td><?php echo empty($_GET['Comunicacion_page']) ? CHtml::link('<i class="fa fa-eye"></i>',array('view', 'id' => $data->id),array('class' => 'btn btn-success btn-sm')) : CHtml::link('<i class="fa fa-eye"></i>',array('view', 'id' => $data->id, 'Comunicacion_page' => $_GET['Comunicacion_page']),array('class' => 'btn btn-success btn-sm'));?>&nbsp;

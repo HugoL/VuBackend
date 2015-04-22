@@ -32,7 +32,7 @@ class ComunicacionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','create','update','ajaxMelopido', 'anadirAutor','melopido','nomelopido','pendientes'),
+				'actions'=>array('index','view','create','update','ajaxMelopido', 'anadirAutor','melopido','nomelopido','pendientes','marcarAprobado'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -250,6 +250,12 @@ class ComunicacionController extends Controller
 		$dataProvider=new CActiveDataProvider('Comunicacion',array('criteria' => $criteria));
 
 		$this->render('pendientes',array('dataProvider'=>$dataProvider));
+	}
+
+	public function actionMarcarAprobado( $id, $valor ){
+		$model = $this->loadModel($id);
+		$model->aprobado = $valor;
+		$model->save();
 	}
 
 	public function actionComunicacionAutocomplete(){
