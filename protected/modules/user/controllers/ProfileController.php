@@ -32,7 +32,7 @@ class ProfileController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','principal','administrador','colaborador','consultor','visitante'),
+				'actions'=>array('create','update','principal','administrador','colaborador','consultor','visitante','verChat'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -256,21 +256,27 @@ class ProfileController extends Controller
 
 	}
 
+	public function actionVerChat(){
+		$this->render('chat');
+	}
+
 	protected function pendientesRevisar(){
+		$edicion = $this->edicionActual();
 		$criteria = new CDbCriteria;
 		$criteria->select = 'count(*) as total';
-		$criteria->condition = 'revisado = :id AND (aprobado = NULL OR aprobado = 0)';
-		$criteria->params = array(':id' => Yii::app()->user->id);
+		$criteria->condition = 'revisado = :id AND (aprobado = NULL OR aprobado = 0) AND edicion = :edicion';
+		$criteria->params = array(':id' => Yii::app()->user->id,':edicion' => $edicion );
 		$norevisadas = Comunicacion::model()->find( $criteria );
 
 		return $norevisadas->total;
 	}
 
 	protected function revisadas(){
+		$edicion = $this->edicionActual();
 		$criteria = new CDbCriteria;
 		$criteria->select = 'count(*) as total';
-		$criteria->condition = 'revisado = :id';
-		$criteria->params = array(':id' => Yii::app()->user->id);
+		$criteria->condition = 'revisado = :id AND edicion = :edicion';
+		$criteria->params = array(':id' => Yii::app()->user->id,'edicion' => $edicion);
 		$norevisadas = Comunicacion::model()->find( $criteria );
 
 		return $norevisadas->total;

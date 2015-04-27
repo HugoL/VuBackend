@@ -6951,3 +6951,23 @@ REQUEST_URI=/~hugo/vubackend/user/profile/colaborador
 2015/04/27 10:22:37 [warning] [application] Error al definir unsafe el atributo "id" de "Comunicacion".
 in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ComunicacionController.php (288)
 in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php (13)
+2015/04/27 11:11:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "chat" solicitada.' in C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(270): CController->missingAction('chat')
+#1 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('chat')
+#2 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/profile/ch...')
+#3 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/~hugo/vubackend/user/profile/chat
+---
+2015/04/27 11:11:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "verChat" solicitada.' in C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(270): CController->missingAction('verChat')
+#1 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('verChat')
+#2 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/profile/ve...')
+#3 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/~hugo/vubackend/user/profile/verChat
+---
