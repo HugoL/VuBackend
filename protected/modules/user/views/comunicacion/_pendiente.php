@@ -10,7 +10,7 @@
 	</td>
 
 	<td>
-	<?php echo CHtml::link($data->titulo,$data->url); ?>
+	<?php echo CHtml::link($data->titulo,$data->url,array('target' => '_blank')); ?>
 	</td>
 
 	<td>
