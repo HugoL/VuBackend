@@ -246,7 +246,7 @@ class ComunicacionController extends Controller
 	public function actionPendientes( ){
 
 		$criteria = new CDbCriteria;
-		$criteria->condition = 'revisado = '.Yii::app()->user->id.' AND ISNULL(aprobado)';
+		$criteria->condition = 'revisado = '.Yii::app()->user->id.' AND (ISNULL(aprobado) OR aprobado = 0)';
 		$dataProvider=new CActiveDataProvider('Comunicacion',array('criteria' => $criteria));
 
 		$this->render('pendientes',array('dataProvider'=>$dataProvider));
@@ -284,7 +284,6 @@ class ComunicacionController extends Controller
 
   public function actionUpdateObservaciones( $id ){
 		$model=$this->loadModel($id);
-		print_r($_POST);
 		if( isset($_POST['Comunicacion']) ){
 			$model->attributes = $_POST['Comunicacion'];
 			$model->update();
@@ -293,6 +292,7 @@ class ComunicacionController extends Controller
 			$this->redirect(Yii::app()->request->urlReferrer."#".$id);
 		}
 	}
+
 
 
 	/**

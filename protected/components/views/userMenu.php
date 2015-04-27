@@ -3,7 +3,9 @@
 <div class="collapse navbar-collapse navbar-ex1-collapse">
 <ul class="navbar navbar-inverse  nav navbar-nav side-nav" id="menulateral">
 	<li <?php if( strcmp(Yii::app()->controller->id,'profile') == 0 ): ?> class="active" <?php endif; ?>><?php echo CHtml::link('<i class="fa fa-fw fa-home"></i> Principal',array('profile/principal')); ?></li>
-	<li <?php if( strcmp(Yii::app()->controller->id,'inscrito') == 0 ): ?> class="active" <?php endif; ?>><?php echo CHtml::link('<i class="fa fa-fw fa-users"></i> Inscritos',array('inscrito/index')); ?></li> 	
+	<?php if( Yii::app()->getModule('user')->esAdministrador() ): ?>
+		<li <?php if( strcmp(Yii::app()->controller->id,'inscrito') == 0 ): ?> class="active" <?php endif; ?>><?php echo CHtml::link('<i class="fa fa-fw fa-users"></i> Inscritos',array('inscrito/index')); ?></li> 
+	<?php endif; ?>	
 
 	<?php if( Yii::app()->getModule('user')->esColaborador() || Yii::app()->getModule('user')->esAdministrador() ): ?>
 	<li <?php if( strcmp(Yii::app()->controller->id,'comunicacion') == 0 && strcmp(Yii::app()->controller->action->id,'index') == 0 ): ?> class="active" <?php endif; ?>><?php echo CHtml::link('<i class="fa fa-fw fa-files-o"></i> Comunicaciones',array('comunicacion/index')); ?></li>

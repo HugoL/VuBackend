@@ -259,7 +259,7 @@ class ProfileController extends Controller
 	protected function pendientesRevisar(){
 		$criteria = new CDbCriteria;
 		$criteria->select = 'count(*) as total';
-		$criteria->condition = 'revisado = :id AND aprobado = NULL';
+		$criteria->condition = 'revisado = :id AND (aprobado = NULL OR aprobado = 0)';
 		$criteria->params = array(':id' => Yii::app()->user->id);
 		$norevisadas = Comunicacion::model()->find( $criteria );
 
@@ -269,7 +269,7 @@ class ProfileController extends Controller
 	protected function revisadas(){
 		$criteria = new CDbCriteria;
 		$criteria->select = 'count(*) as total';
-		$criteria->condition = 'revisado = :id AND aprobado != NULL';
+		$criteria->condition = 'revisado = :id';
 		$criteria->params = array(':id' => Yii::app()->user->id);
 		$norevisadas = Comunicacion::model()->find( $criteria );
 
