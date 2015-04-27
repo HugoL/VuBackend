@@ -6849,3 +6849,45 @@ Stack trace:
 REQUEST_URI=/~hugo/vubackend/user/inscrito/delete/id/17
 HTTP_REFERER=http://localhost/~hugo/vubackend/user/inscrito/index
 ---
+2015/04/27 09:21:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ComunicacionController.php:297
+Stack trace:
+#0 C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ComunicacionController.php(256): ComunicacionController->loadModel('aprobado2')
+#1 [internal function]: ComunicacionController->actionMarcarAprobado('aprobado2', '1')
+#2 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ComunicacionController), Array)
+#3 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ComunicacionController), Object(ReflectionMethod), Array)
+#4 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('marcarAprobado')
+#13 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/comunicaci...')
+#14 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/~hugo/vubackend/user/comunicacion/marcarAprobado/id/aprobado2/valor/1
+HTTP_REFERER=http://localhost/~hugo/vubackend/user/comunicacion/index
+---
+2015/04/27 09:52:41 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Usted no se encuentra autorizado a realizar esta acción.' in C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\auth\CAccessControlFilter.php:179
+Stack trace:
+#0 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\auth\CAccessControlFilter.php(142): CAccessControlFilter->accessDenied(Object(RWebUser), 'Usted no se enc...')
+#1 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('updateObservaci...')
+#8 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/comunicaci...')
+#9 C:\Archivos de programa\Apache Software Foundation\Apache2.2\htdocs\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/~hugo/vubackend/user/comunicacion/updateObservaciones/id/6
+HTTP_REFERER=http://localhost/~hugo/vubackend/user/comunicacion/index
+---
+2015/04/27 09:56:43 [warning] [application] Error al definir unsafe el atributo "id" de "Comunicacion".
+in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\protected\modules\user\controllers\ComunicacionController.php (289)
+in C:\Documents and Settings\Hugo\Mis documentos\GitHub\vubackend\index.php (13)

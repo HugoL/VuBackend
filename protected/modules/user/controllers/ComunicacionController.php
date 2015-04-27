@@ -32,7 +32,7 @@ class ComunicacionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','create','update','ajaxMelopido', 'anadirAutor','melopido','nomelopido','pendientes','marcarAprobado'),
+				'actions'=>array('index','view','create','update','ajaxMelopido', 'anadirAutor','melopido','nomelopido','pendientes','marcarAprobado','updateObservaciones'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -281,6 +281,18 @@ class ComunicacionController extends Controller
     	//$this->renderJSON($comunicaciones);
     	Yii::app()->end();
   }
+
+  public function actionUpdateObservaciones( $id ){
+		$model=$this->loadModel($id);
+		print_r($_POST);
+		if( isset($_POST['Comunicacion']) ){
+			$model->attributes = $_POST['Comunicacion'];
+			$model->update();
+			if( $id > 0)
+				$id--;	
+			$this->redirect(Yii::app()->request->urlReferrer."#".$id);
+		}
+	}
 
 
 	/**

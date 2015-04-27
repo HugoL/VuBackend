@@ -14,7 +14,27 @@
 	</td>
 
 	<td>
-	<?php echo CHtml::encode($data->observaciones); ?>
+	<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'comunicacion-form',
+	'enableAjaxValidation'=>false,
+	'action'=>array('comunicacion/updateObservaciones/id/'.$data->id),
+)); ?>
+
+	<?php echo $form->errorSummary($data); ?>
+	<?php echo $form->hiddenField($data,'id'); ?>
+	<div class="row col-md-12 col-lg-12">
+		<?php echo $form->textArea($data,'observaciones',array('class'=>'form-control')); ?>
+		<?php echo $form->error($data,'observaciones'); ?>
+	</div>
+	<div class="row col-md-1 col-lg-1 guardar">
+		<?php echo CHtml::tag('button', array(
+        'name'=>'btnSubmit',
+        'type'=>'submit',
+        'class'=>'btn btn-warning btn-xs',
+      ), '<i class="fa fa-icon fa-save"></i>'); ?>
+	</div>
+
+<?php $this->endWidget(); ?>
 	</td>
 
 	<td>
@@ -40,20 +60,19 @@
 			1 => 'Sí',
 			2 => 'No'
 		);
-		echo CHtml::dropDownList('aprobado[]','select',$listData,array('class'=> 'form-control', 'id' => 'aprobado'.$data->id));
-
-        			$url = $this->createUrl('comunicacion/marcarAprobado');
-        			$js = '
-        			 $("input[name=\'aprobado[]\']").change(function(){        			 	
-        			 	var valor;
-        			 	valor = $(this).val();
-        			 	alert("valor: "+valor+", id :"+this.id);
-        			    $.post("'.$url.'/id/"+this.id+"/valor/"+valor, function(data) {
-        			        //$(this).attr("disabled", true);
-        			    });
-        			});
-        			';
-        			Yii::app()->clientScript->registerScript('aprobar', $js);
+			echo CHtml::dropDownList('aprobado[]','select',$listData,array('class'=> 'form-control selaprobado', 'id' => $data->id,'options' => array($data->aprobado => array('selected'=>true))));
+		
+			$url = $this->createUrl('comunicacion/marcarAprobado');
+			$js = '
+			 $(".selaprobado").change(function(){        			 	
+			 	var valor;
+			 	valor = $(this).val();			 	
+			    $.post("'.$url.'/id/"+this.id+"/valor/"+valor, function(data) {
+			        window.location.reload()
+			    });
+			});
+			';
+			Yii::app()->clientScript->registerScript('aprobar', $js);
 					
 	}else{		
 		switch($data->aprobado) {
