@@ -94,32 +94,46 @@
 	<td><?php echo CHtml::encode($data->observaciones2); ?></td>
 	</tr>
 <?php endif; ?>
-<tr><td>
+	<tr>
+	<td>
 	<?php echo CHtml::encode($data->getAttributeLabel('fecha')); ?>:</b></td>
 	<td><?php echo CHtml::encode($data->fecha); ?></td>
 	</tr>
-<tr><td>
+	<tr>
+	<td>
 	<?php echo CHtml::encode($data->getAttributeLabel('pagado')); ?>:</b></td>
 	<td><?php echo $data->pagado == 1 ? "Sí" : "No"; ?></td>
 	</tr>
-<tr><td>
+	<tr>
+	<td>
 	<?php echo CHtml::encode($data->getAttributeLabel('talleres')); ?>:</b></td>
 	<td><?php echo $data->talleres == 0 || $data->talleres == null ? "No" : "Sí"; ?></td>
 	</tr>
 	<?php if( !empty($data->inscritoTaller) ): ?>
-	<tr><td>Talleres</td>
+	<tr>
+		<td>Talleres</td>
 		<td>
 		<?php foreach ($data->inscritoTaller as $key => $installer): ?>
 			<?php echo $installer->taller->abreviacion."<br/>"; ?>
 		<?php endforeach; ?>
-	</td></tr>
+		</td>
+	</tr>
 	<?php endif; ?>
 
-	<tr><td>
+	<tr>
+	<td>
 	<?php echo CHtml::encode($data->getAttributeLabel('coursesites')); ?>:</b></td>
 	<td><?php echo CHtml::encode($data->coursesites); ?></td>
 	</tr>
-<tr><td>
-	<?php echo CHtml::encode($data->getAttributeLabel('id_rol')); ?>:</b></td>
-	<td><?php echo CHtml::encode($data->rol->nombre); ?></td>
+	<tr>
+		<td>
+		<?php echo CHtml::encode($data->getAttributeLabel('id_rol')); ?>:</b></td>
+		<td><?php echo CHtml::encode($data->rol->nombre); ?></td>
 	</tr>
+	<?php if( $data->rol->id != 3 ): ?>
+		<tr>
+			<td>
+			<?php echo CHtml::encode($data->getAttributeLabel('certificado')); ?>:</b></td>
+			<td><?php echo $data->certificado == 1 ? "Sí":"No"; ?></td>
+		</tr>
+	<?php endif; ?>

@@ -68,7 +68,7 @@ class Inscrito extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('nombre, apellido1, apellido2, email, nif, nacionalidad, direccion, sexo, pais, edicion, fecha, id_rol', 'required'),
-			array('sexo, pagado, talleres, id_rol, total', 'numerical', 'integerOnly'=>true),
+			array('sexo, pagado, talleres, id_rol, total, certificado', 'numerical', 'integerOnly'=>true),
 			array('nombre, apellido1, apellido2, nif, nacionalidad, cp, localidad, provincia, telefono, pais, nifEmpresa, edicion', 'length', 'max'=>128),
 			array('email, direccion, cargo, razonSocial, direccionEmpresa, titulacion, coursesites', 'length', 'max'=>256),
 			array('observaciones, observaciones2', 'safe'),
@@ -126,6 +126,7 @@ class Inscrito extends CActiveRecord
 			'talleres' => 'Talleres',
 			'coursesites' => 'Coursesites',
 			'id_rol' => 'Rol',
+			'certificado' => 'certificado',
 		);
 	}
 
