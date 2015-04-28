@@ -126,7 +126,7 @@ class Inscrito extends CActiveRecord
 			'talleres' => 'Talleres',
 			'coursesites' => 'Coursesites',
 			'id_rol' => 'Rol',
-			'certificado' => 'certificado',
+			'certificado' => 'Certificado',
 		);
 	}
 
