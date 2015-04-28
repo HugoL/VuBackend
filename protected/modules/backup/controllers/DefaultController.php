@@ -44,7 +44,7 @@ class DefaultController extends Controller
 		), 
 		array('allow', // allow admin user to perform 'admin' and 'delete' actions
 						'actions'=>array('admin','delete','clean','index','view','create','upload', 'download','restore'),
-						'users'=>array('admin'),
+						'users'=>Yii::app()->getModule('user')->getAdministradores(),
 		),
 		array('deny',  // deny all users
 						'users'=>array('*'),
@@ -292,6 +292,7 @@ class DefaultController extends Controller
 		{
 			$list = array_map('basename',$list_files);
 			sort($list);
+			$list = array_reverse($list);
 
 	
 			foreach ( $list as $id=>$filename )

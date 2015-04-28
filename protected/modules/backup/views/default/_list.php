@@ -1,40 +1,8 @@
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id' => 'install-grid',
-	'dataProvider' => $dataProvider,
-	'columns' => array(
-		'name',
-		'size',
-		'create_time',
-		array(
-			'class' => 'CButtonColumn',
-			'template' => ' {download} {restore}',
-			  'buttons'=>array
-			    (
-			        'Download' => array
-			        (
-			            'url'=>'Yii::app()->createUrl("backup/default/download", array("file"=>$data["name"]))',
-			        ),
-			        'Restore' => array
-			        (
-			            'url'=>'Yii::app()->createUrl("backup/default/restore", array("file"=>$data["name"]))',
-					),
-			        'delete' => array
-			        (
-			            'url'=>'Yii::app()->createUrl("backup/default/delete", array("file"=>$data["name"]))',
-			        ),
-			    ),		
-		),
-		array(
-			'class' => 'CButtonColumn',
-			'template' => '{delete}',
-			  'buttons'=>array
-			    (
-
-			        'delete' => array
-			        (
-			            'url'=>'Yii::app()->createUrl("backup/default/delete", array("file"=>$data["name"]))',
-			        ),
-			    ),		
-		),
-	),
-)); ?>
+<tr>
+		<th><?php echo CHtml::link($data["name"],Yii::app()->createUrl("backup/default/download", array("file"=>$data["name"]))); ?></th>
+		<th><?php echo $data["size"]; ?></th>
+		<th><?php echo $data["create_time"]; ?></th>
+		<th><?php echo CHtml::link('<i class="fa fa-icon fa-download"></i>',Yii::app()->createUrl("backup/default/download", array("file"=>$data["name"])),array('class' => 'btn btn-xs btn-success','title' => 'Descargar')); ?>&nbsp;&nbsp;
+			<?php echo CHtml::link('<i class="fa fa-icon fa-remove"></i>',Yii::app()->createUrl("backup/default/delete", array("file"=>$data["name"])),array('class' => 'btn btn-xs btn-danger','title' => 'Eliminar','confirm' => '¿Estás seguro?')); ?>
+		</th>
+	</tr>
