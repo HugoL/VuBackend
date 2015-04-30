@@ -48,7 +48,7 @@ class InscritoController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id){
+	public function actionView( $id ){
 		$inscritoComunicacion = new InscritoComunicacion;
 		$comunicaciones = Comunicacion::model()->findAll();
 		$model = $this->loadModel($id);
@@ -428,8 +428,10 @@ class InscritoController extends Controller
 	public function loadModel($id)
 	{
 		$model=Inscrito::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+		if($model===null){
+			$this->redirect(CHttpRequest::getUrlReferrer());
+			Yii::app()->end();
+		}
 		return $model;
 	}
 

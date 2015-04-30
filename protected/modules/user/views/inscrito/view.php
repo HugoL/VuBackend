@@ -34,7 +34,7 @@ $this->menu=array(
   <?php endif; ?>  <small></h1>
 
 <?php //Opcion para que la feuz pueda marcar/desmarcar como pagado 
-	if(Yii::app()->user->rol == 4 && $model->pagado == 1): ?>
+	if( Yii::app()->user->rol == 4 && $model->pagado == 1 ): ?>
 	<?php echo CHtml::link('Marcar como NO PAGADO',array('inscrito/marcarNoPagado/id/'.$model->id),array('class'=>'btn btn-primary btn-sm')); ?> 
 <?php endif; ?>
 <?php // LISTO LAS COMUNICACIONES ASOCIADAS AL INSCRITO ?>
