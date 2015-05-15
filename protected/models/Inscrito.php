@@ -175,9 +175,9 @@ class Inscrito extends CActiveRecord
 	}
 
 	public static function inscritoAutoComplete($name='') {
- 
+ 		$edicion = Dato::model()->find('clave = "edicion"');
         // Recommended: Secure Way to Write SQL in Yii 
-    $sql= "SELECT id , CONCAT(nombre,' ',apellido1,' - ',email) as label FROM ".Inscrito::model()->tableSchema->name." WHERE nombre LIKE :name OR 'apellido1' LIKE :name OR 'apellido2' LIKE :name OR email LIKE :name";
+    	$sql= "SELECT id , CONCAT(nombre,' ',apellido1,' - ',email) as label FROM ".Inscrito::model()->tableSchema->name." WHERE nombre LIKE :name OR 'apellido1' LIKE :name OR 'apellido2' LIKE :name OR email LIKE :name AND edicion = ".$edicion->valor;
         $name = $name.'%';                
         return Yii::app()->db->createCommand($sql)->queryAll(true,array(':name'=>$name));
  
