@@ -70,6 +70,7 @@
 	<td>Operaciones</td>
 	<td>
 		<?php echo CHtml::link('<i class="fa fa-user-plus"></i>',array('anadirAutor', 'id' => $data->id),array('class' => 'btn btn-warning btn-sm')); ?>&nbsp;	
+		<?php echo CHtml::link('<i class="fa fa-pencil-square-o"></i>',array('update', 'id' => $data->id),array('class' => 'btn btn-primary btn-sm')); ?>&nbsp;
 		<?php
 				echo CHtml::link('<i class="fa fa-icon fa-trash-o"> </i>', $this->createUrl('comunicacion/delete', array('id' => $data->id)), 
 				    array(

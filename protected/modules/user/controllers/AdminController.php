@@ -138,15 +138,16 @@ class AdminController extends Controller
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'index' page.
 	 */
-	public function actionDelete()
+	public function actionDelete( $id )
 	{
-		if(Yii::app()->request->isPostRequest)
-		{
+		Yii::app()->clientScript->scriptMap['*.js'] = false;
+
+		if( Yii::app()->getModule('user')->esAdministrador()){
 			// we only allow deletion via POST request
-			$model = $this->loadModel();
-			$profile = Profile::model()->findByPk($model->id);
+			$model = $this->loadModel( $id )->delete();
+			/*$profile = Profile::model()->findByPk($model->id);
 			$profile->delete();
-			$model->delete();
+			$model->delete(); */
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_POST['ajax']))
 				$this->redirect(array('/user/admin'));
