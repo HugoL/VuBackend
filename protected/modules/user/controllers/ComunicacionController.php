@@ -132,27 +132,29 @@ class ComunicacionController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex( $nopaginas = 0)
+	public function actionIndex( $paginas = 1 )
 	{
 		$parametro = Dato::model()->find('clave = "edicion"');
 		$criteria = new CDbCriteria;
 		$criteria->condition = 'edicion = :edicion';
 		$criteria->params = array(':edicion' => $parametro->valor);
-		
-		if( $nopaginas = 0){
+
+		if( $paginas == 1 ){
 			$dataProvider=new CActiveDataProvider('Comunicacion',array(
 				'criteria' => $criteria,
 				'pagination' => array('pageSize' => 20),
-				));
+			));
 		}else{
-				$dataProvider=new CActiveDataProvider('Comunicacion',array(
+			$dataProvider=new CActiveDataProvider('Comunicacion',array(
 				'criteria' => $criteria,
-				));
+				'pagination' => false,
+			));
 		}
 
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'edicion'=>$parametro->valor,
+			'paginas'=>$paginas,
 		));
 	}
 

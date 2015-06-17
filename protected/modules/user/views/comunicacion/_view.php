@@ -91,8 +91,8 @@
 	
 	</td>
 	
-	<td><?php echo empty($_GET['Comunicacion_page']) ? CHtml::link('<i class="fa fa-eye"></i>',array('view', 'id' => $data->id),array('class' => 'btn btn-success btn-sm')) : CHtml::link('<i class="fa fa-eye"></i>',array('view', 'id' => $data->id, 'Comunicacion_page' => $_GET['Comunicacion_page']),array('class' => 'btn btn-success btn-sm'));?>&nbsp;
-		<? if( Yii::app()->getModule('user')->esAdministrador() ) : ?>
+	<td><?php echo empty($_GET['Comunicacion_page']) ? CHtml::link('<i class="fa fa-eye"></i>',array('view', 'id' => $data->id,'paginas' => $paginas),array('class' => 'btn btn-success btn-sm')) : CHtml::link('<i class="fa fa-eye"></i>',array('view', 'id' => $data->id, 'Comunicacion_page' => $_GET['Comunicacion_page'],'paginas' => $paginas),array('class' => 'btn btn-success btn-sm'));?>&nbsp;
+		<?php if( Yii::app()->getModule('user')->esAdministrador() ) : ?>
 		<?php echo CHtml::link('<i class="fa fa-user-plus"></i>',array('anadirAutor', 'id' => $data->id),array('class' => 'btn btn-warning btn-sm')); ?>		
 		<?php endif; ?>
 	</td>

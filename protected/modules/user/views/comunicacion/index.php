@@ -15,6 +15,8 @@ $this->menu=array(
 <?php if( !empty( $_GET['hash']) ): ?>
   <input value="<?=$_GET['hash'] ?>" id="hash" type="hidden" />
 <?php endif; ?>
+<div class="row pull-right"><?php echo $paginas == 1 ? CHtml::link('Página única',array('comunicacion/index','paginas'=>0),array('class' => 'btn btn-danger' )) : CHtml::link('Ver en páginas',array('comunicacion/index','paginas'=>1),array('class' => 'btn btn-primary' )); ?></div>
+<div class="clearfix">&nbsp;</div>
 <div class="table-responsive">
 <table class="table table-striped">
 	<tr>
@@ -31,6 +33,7 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
+  'viewData' => array('paginas' => $paginas),
   'pager'=>array(
         'cssFile'=>Yii::app()->theme->baseUrl.'/css/pager.css',
         'firstPageLabel' => '<<',

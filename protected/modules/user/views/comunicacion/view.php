@@ -16,10 +16,16 @@ $this->menu=array(
 );
 ?>
 <?php 
+if( isset($_GET['paginas']) )
+  $paginas = intval($_GET['paginas']); 
+else 
+  $paginas = 1; 
+?>
+<?php 
 if( !empty($_GET['Comunicacion_page']) )
-  $volver = array('comunicacion/index/Comunicacion_page/'.$_GET['Comunicacion_page']);
+  $volver = array('comunicacion/index/paginas/'.$paginas.'/Comunicacion_page/'.$_GET['Comunicacion_page']);
 else
-  $volver = array('comunicacion/index');
+  $volver = array('comunicacion/index/paginas/'.$paginas);
  ?>
 <center><?php echo CHtml::link('<i class="fa fa-arrow-left"></i> Volver',$volver,array('class' => 'btn btn-danger')); ?></center>
 
